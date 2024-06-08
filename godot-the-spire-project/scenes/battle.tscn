@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch2u1c068ac2n"]
+
+[ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_jubuy"]
+
+[node name="Battle" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.505344, 0.505344, 0.505344, 1)
+texture = ExtResource("1_jubuy")
+centered = false
+metadata/_edit_lock_ = true

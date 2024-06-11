@@ -23,6 +23,11 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 
+[layer_names]
+
+2d_physics/layer_1="Card Target Selector"
+2d_physics/layer_2="Card Drop Area"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

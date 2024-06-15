@@ -1,4 +1,5 @@
 # This is the basis of all of our card states!
+# Here we add in various functions that each of our Card States will use.
 # note this is not a state machine
 class_name CardState
 extends Node
@@ -12,9 +13,9 @@ signal transition_requested(from:CardState, to: State)
 #A variable that can be assigned to the editor
 @export var state: State
 
-#Get a reference to the card ui node
+# Get a reference to the card ui node
 # so we can change the color and updating the label within the state scripts
-var card_ui: CardUI
+var card_ui_node: CardUI
 
 #These two functions will be called when entering/exit a state
 func enter() -> void:

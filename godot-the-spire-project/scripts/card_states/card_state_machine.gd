@@ -2,7 +2,7 @@
 class_name CardStateMachine
 extends Node
 
-#In the inspector, we set our card state
+# In the inspector, we set our card state
 # Our initial_state variable will always be something that inherits from CardState
 # so basically, all of our Card State Notes have a script thats inherits from CardState
 # Thus it is a valid input for Initial_state
@@ -25,7 +25,7 @@ func init(card: CardUI) -> void:
 			# which will handle the transition
 			child.transition_requested.connect(_on_transition_requested)
 			# Then, we pass the card ui reference to the state itself
-			child.card_ui = card
+			child.card_ui_node = card
 			
 	# Then, if we have an initial_state, we enter it:
 	if initial_state:
@@ -80,4 +80,4 @@ func _on_transition_requested(from: CardState, to:CardState.State) -> void:
 	# ands et our current state to this new state
 	new_state.enter()
 	current_state = new_state
-	
+

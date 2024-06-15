@@ -1,11 +1,18 @@
 extends CardState
 
+func enter() -> void:
+	# Debug Purposes
+	card_ui_node.color.color = Color.ORANGE
+	card_ui_node.state.text = "CLICKED STATE"
+	
+	# Enable the monitoring of the drop point detector that we have
+	# on the card ui.
+	# We do this here because we are now starting interactions with the card
+	# when we click on it
+	card_ui_node.drop_point_detector.monitoring = true
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func on_input(event: InputEvent) -> void:
+	# if we are moving the mouse, we are dragging.
+	if event is InputEventMouseMotion:
+		#THUS transition to the Dragging State
+		transition_requested.emit(self,CardState.State.DRAGGING)

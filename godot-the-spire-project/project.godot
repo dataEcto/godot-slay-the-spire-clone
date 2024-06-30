@@ -40,6 +40,7 @@ right_mouse={
 
 2d_physics/layer_1="Card Target Selector"
 2d_physics/layer_2="Card Drop Area"
+2d_physics/layer_3="Enemy"
 
 [rendering]
 

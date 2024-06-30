@@ -10,6 +10,9 @@ extends Control
 # right now it doesn't actually do anything
 signal reparent_requested(which_card_ui: CardUI)
 
+#Variable that holds our card stats
+@export var cardInfo: Card
+
 # Make reference to some Inspector Variables
 @onready var color: ColorRect = $Color
 @onready var state: Label = $State

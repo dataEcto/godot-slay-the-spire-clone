@@ -15,5 +15,5 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
 # that can also have functions within them
 
 # This function checks if we are aiming at a single target
-func is_single_targerted() -> bool:
+func is_single_targeted() -> bool:
 	return target == Target.SINGLE_ENEMY

@@ -32,6 +32,8 @@ func enter() -> void:
 
 # Transitioning to Release OR Base state.
 func on_input(event: InputEvent) -> void:
+	# Check if the card that is selected is a single target card
+	var single_targeted := card_ui_node.cardInfo.is_single_targeted()
 	# This checks if our mouse is moving
 	# By checking if the event we pass through is an Input Mouse motion
 	var mouse_motion:= event is InputEventMouseMotion
@@ -40,6 +42,14 @@ func on_input(event: InputEvent) -> void:
 	# This checks if we confirmed with left click
 	var confirm = event.is_action_released("left_mouse") or event.is_action_pressed("left_mouse")
 	
+	# Simple if Statement.
+	# Note that the array will only ever detect Card Drop Area.
+	# First of all, we haven't even started aiming, so we can't detect enemies
+	# Second of all, a Card's DropPointDetector only detects the Card Drop Area
+	if single_targeted and mouse_motion and card_ui_node.targets.size() > 0:
+		transition_requested.emit(self, CardState.State.AIMING)
+		return
+
 	#If we move the mouse...
 	if mouse_motion:
 		#update the global position so it follows the mouse cursor

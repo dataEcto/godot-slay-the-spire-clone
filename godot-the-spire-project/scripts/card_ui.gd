@@ -21,10 +21,14 @@ signal reparent_requested(which_card_ui: CardUI)
 # This array of nodes will hold all of the current targets for the card
 @onready var targets: Array[Node] = []
 
-#Access our card state machine
+# Access our card state machine
 # "The 'as' operator casts the instance to the given type, 
 # it returns null if the type is incompatible."
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
+
+# Variables accessed by card_aiming_state
+var parent: Control
+var tween: Tween
 
 # Once we boot up, we initialize the state machine using its function
 func _ready() -> void:
@@ -37,6 +41,11 @@ func _ready() -> void:
 # this allback function.
 func _input(event: InputEvent) -> void:
 	card_state_machine.on_input(event)
+
+# Animation function for card_aiming_state, using tweening
+func _animate_to_position(new_position: Vector2, duration: float) -> void:
+	tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", new_position, duration)
 
 func _on_gui_input(event: InputEvent) -> void:
 	card_state_machine.on_gui_input(event)
@@ -51,7 +60,6 @@ func _on_mouse_exited() -> void:
 # to the proper signals
 # via Scene > Card UI > Node > signals > connect the 3 and youll see a green door
 # _ready and _input are inherited from nodes, no need to connect those
-
 
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 	# When we first enter the Area2D, check if the Area2D is in our array.

@@ -8,6 +8,8 @@ func _ready () -> void:
 	for child in get_children():
 		# Assign a variable to the current children as Card UI static type
 		var card_ui_node := child as CardUI
+		# For our aiming state
+		card_ui_node.parent = self
 		# connect the signal to our own function, declared below
 		card_ui_node.reparent_requested.connect(_on_card_ui_reparent_requested)
 
